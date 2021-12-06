@@ -5,21 +5,23 @@ import fr.lernejo.logger.LoggerFactory;
 import java.util.Scanner;
 
 public class HumanPlayer implements Player{
-    Logger logger = LoggerFactory.getLogger("Player");
-    Scanner scanner = new Scanner(System.in);
+    Logger logger =  LoggerFactory.getLogger("player");
 
     @Override
     public long askNextGuess() {
-        return scanner.nextInt();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("what's your guess");
+        return sc.nextLong();
     }
 
     @Override
     public void respond(boolean lowerOrGreater) {
-        if (lowerOrGreater) {
-            System.out.println("Le nombre est le plus grand");
-        } else {
-            System.out.println("Le nombre est le plus petit");
-        }
+        if(lowerOrGreater)
+            logger.log("Plus Grand");
+        else
+            logger.log("Plus Petit ");
+
     }
 }
+
 
