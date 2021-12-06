@@ -1,16 +1,17 @@
 package fr.lernejo.logger;
 
 public class CompositeLogger implements Logger{
-    Logger logger_1;
-    Logger logger_2;
-    public CompositeLogger(Logger logger_1, Logger logger_2)
-    {
-        this.logger_1 = logger_1;
-        this.logger_2 = logger_2;
+    Logger log1;
+    Logger log2;
+
+    public CompositeLogger(Logger l1, Logger l2) {
+        log1 = l1;
+        log2 = l2;
     }
+
     @Override
     public void log(String message) {
-        logger_1.log(message);
-        logger_2.log(message);
+        log1.log(message);
+        log2.log(message);
     }
 }

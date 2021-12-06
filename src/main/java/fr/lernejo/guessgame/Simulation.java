@@ -10,37 +10,36 @@ import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 
 public class Simulation {
+
     private final Logger logger = LoggerFactory.getLogger("simulation");
     private final Player player;  //TODO add variable type
     private long numberToGuess; //TODO add variable type
 
-    public Simulation (Player player) {
-        //TODO implement me
-        this.player=player;
+    public Simulation(Player player) {
+        this.player = player;
     }
 
     public void initialize(long numberToGuess) {
-        //TODO implement me
         this.numberToGuess=numberToGuess;
     }
 
-    /**
-     * @return true if the player have guessed the right number
-     */
     private boolean nextRound() {
-        //TODO implement me
-        long usernumber = player.askNextGuess();
-        if (usernumber == numberToGuess) {
+        Long number = player.askNextGuess();
+        if(number.equals(numberToGuess))
+        {
+            logger.log("Felicitation Vous avez gagner Age du capitaine : "+numberToGuess);
             return true;
-        } else {
-            if(usernumber < numberToGuess){
-                this.logger.log ("le nombre est inferieur ");
-            }else{
-                this.logger.log ("le nombre est superieur ");
-            }
+        }
+        else
+        {
+            if (number > numberToGuess) {
+                player.respond(false);
+            } else
+                player.respond(true);
             return false;
         }
     }
+
     public void loopUntilPlayerSucceed(long max) {
         logger.log("Debut de la partie");
         boolean test=nextRound();
