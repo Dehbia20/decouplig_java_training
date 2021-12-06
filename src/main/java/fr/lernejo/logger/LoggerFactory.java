@@ -1,7 +1,10 @@
 package fr.lernejo.logger;
 
-public abstract class LoggerFactory{
+public class LoggerFactory {
+
     public static Logger getLogger(String name){
-        return new ConsoleLogger();
+        return new ContextualLogger(name,new FileLogger(("file.txt")));
+
+
     }
 }
